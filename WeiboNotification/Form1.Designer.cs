@@ -86,7 +86,7 @@
             this.webBrowser1.Location = new System.Drawing.Point(0, 0);
             this.webBrowser1.MinimumSize = new System.Drawing.Size(20, 20);
             this.webBrowser1.Name = "webBrowser1";
-            this.webBrowser1.Size = new System.Drawing.Size(624, 305);
+            this.webBrowser1.Size = new System.Drawing.Size(620, 305);
             this.webBrowser1.TabIndex = 1;
             // 
             // listViewMessage
@@ -118,7 +118,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(624, 305);
+            this.ClientSize = new System.Drawing.Size(620, 305);
             this.Controls.Add(this.listViewMessage);
             this.Controls.Add(this.webBrowser1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
