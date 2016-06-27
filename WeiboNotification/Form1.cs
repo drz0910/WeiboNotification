@@ -23,8 +23,8 @@ namespace WeiboNotification
         private Queue<string> blogQueue;
         private Thread piThread;
         private string siteURL = @"http://m.weibo.cn";
-        private string tagPattern = @"\<a.*?\<\/a\>\s*";
-
+        private string tagPatternA = @"\<a.*?\<\/a\>\s*";
+        private string tagPatternI = @"\<i.*?\<\/i\>\s*";
         public Form()
         {
             InitializeComponent();
@@ -75,10 +75,12 @@ namespace WeiboNotification
                 match = Regex.Match(responseText, @"\<\/div\>");
                 responseText = responseText.Substring(0, match.Index);
                 // remove tags
-                if (Regex.IsMatch(responseText, tagPattern))
-                    responseText = Regex.Replace(responseText, tagPattern, "");
+                if (Regex.IsMatch(responseText, tagPatternA))
+                    responseText = Regex.Replace(responseText, tagPatternA, "");
+                if (Regex.IsMatch(responseText, tagPatternI))
+                    responseText = Regex.Replace(responseText, tagPatternI, "");
                 // remove header
-                return Regex.Replace(responseText, @"class.*\>", "").Trim();
+                return Regex.Replace(responseText, @".*weibo-text.*\>", "").Trim();
             }
         }
 
@@ -133,8 +135,8 @@ namespace WeiboNotification
                             if (Regex.IsMatch(str, expandPattern))
                                 str = expandArticle(str.Substring(Regex.Match(str, expandPattern, RegexOptions.RightToLeft).Index));
                             // remove tags
-                            else if (Regex.IsMatch(str, tagPattern))
-                                str = Regex.Replace(str, tagPattern, "");
+                            else if (Regex.IsMatch(str, tagPatternA))
+                                str = Regex.Replace(str, tagPatternA, "");
 
                             SaveNotification(date, str);
                             notifyIcon.ShowBalloonTip(20000, date.ToShortTimeString(), str, ToolTipIcon.Info);
